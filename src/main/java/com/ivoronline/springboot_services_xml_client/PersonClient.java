@@ -6,7 +6,6 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.web.client.RestTemplate;
 import org.w3c.dom.Document;
-
 import java.net.URI;
 
 public class PersonClient {
@@ -27,12 +26,14 @@ public class PersonClient {
     Document            requestDocument   = UtilXML.marshal(getPersonRequest, GetPersonRequest.class);
     String              requestString     = UtilXML.documentToString(requestDocument);
 
-    //SEND  REQUEST
+    //CONFIGURE REQUEST
     URI                 serverURI         = new URI(serverURL);
-    RestTemplate        restTemplate      = new RestTemplate();
     HttpHeaders         headers           = new HttpHeaders();
                         headers.set("Content-Type", "text/xml;charset=UTF-8");
     HttpEntity<String>  entity            = new HttpEntity<>(requestString, headers);
+
+    //SEND REQUEST
+    RestTemplate        restTemplate      = new RestTemplate();
     String              responseString    = restTemplate.postForObject(serverURI, entity, String.class);
 
     //UNMARSHAL RESPONSE OBJECT
