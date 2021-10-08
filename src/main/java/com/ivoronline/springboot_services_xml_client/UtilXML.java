@@ -42,8 +42,8 @@ public class UtilXML {
   public static Document stringToDocument(String xml) throws Exception {
 
     //READ XML STRING
-    InputSource     inputSource     = new InputSource();
-                    inputSource.setCharacterStream(new StringReader(xml));
+    InputSource            inputSource     = new InputSource();
+                           inputSource.setCharacterStream(new StringReader(xml));
 
     //CREATE DOCUMENT
     DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
